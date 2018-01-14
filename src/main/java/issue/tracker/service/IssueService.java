@@ -24,4 +24,26 @@ public class IssueService {
 	public Issue findById(Long id) {
 		return issueRepository.findOne(id);
 	}
+
+	public Issue editIssue(Long id, Issue issue) {
+		Issue storedIssue = issueRepository.findOne(id);
+		storedIssue.setDescription(issue.getDescription());
+		storedIssue.setTitle(issue.getTitle());
+		return issueRepository.save(storedIssue);
+
+	}
+
+	public void deleteIssue(Long id) {
+		this.issueRepository.delete(issueRepository.findOne(id));
+
+	}
+
+	public void setIssueRepository(IssueRepository issueRepository) {
+		this.issueRepository = issueRepository;
+
+	}
+
+	public Iterable<Issue> findByTitleOrDescription(String text) {
+		return issueRepository.findByTitleContainingOrDescriptionContaining(text, text);
+	}
 }
