@@ -1,0 +1,11 @@
+---
+applications:
+- name: issueTrackerMaster
+  memory: 512M
+  disk_quota: 512M
+  instances: 1
+  path: target/java-0.1.0.jar
+  services:
+      - issue_tracker_db
+      
+  buildpack: https://github.com/cloudfoundry/java-buildpack

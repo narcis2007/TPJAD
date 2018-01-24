@@ -24,7 +24,10 @@
 		</tr>
 		
 	</table>
-    
+    <form th:method="GET" action="#" th:object="${text}" th:action="@{/issues/filterJpa?text=} + ${text}">
+		    		<input type="text" name="text" th:object="${text}"/>
+		    		<input type="submit" value="Filter"/>
+				</form>	
 
 </body>
 </html>

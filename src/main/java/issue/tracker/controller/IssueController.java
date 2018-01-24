@@ -44,6 +44,7 @@ public class IssueController {
 	public String getIssues(Model model) {
 		log.info("getIssues");
 		model.addAttribute("issues", issueService.findAll());
+		model.addAttribute("text", "");
 		return "issuesView";
 	}
 
@@ -52,6 +53,13 @@ public class IssueController {
 		log.info("getIssuesByTitleOrDescription");
 		model.addAttribute("issues", issueService.findByTitleOrDescription(text));
 		return "filterIssuesViewJpa";
+	}
+
+	@RequestMapping(value = "/issues/filterJ8", method = RequestMethod.GET)
+	public String getIssuesByTitleOrDescriptionJ8(@RequestParam("text") String text, Model model) {
+		log.info("getIssuesByTitleOrDescriptionJ8");
+		model.addAttribute("issues", issueService.findByTitleOrDescriptionJ8(text));
+		return "filterIssuesViewJ8";
 	}
 
 	@RequestMapping(value = "/issues/{id}", method = RequestMethod.GET)

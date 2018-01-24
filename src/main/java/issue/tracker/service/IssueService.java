@@ -1,5 +1,9 @@
 package issue.tracker.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +47,15 @@ public class IssueService {
 
 	}
 
-	public Iterable<Issue> findByTitleOrDescription(String text) {
+	public List<Issue> findByTitleOrDescription(String text) {
 		return issueRepository.findByTitleContainingOrDescriptionContaining(text, text);
+	}
+
+	public Iterable<Issue> findByTitleOrDescriptionJ8(String text) {
+		Iterable<Issue> issues = issueRepository.findAll();
+		List<Issue> issuesList = StreamSupport.stream(issues.spliterator(), false).collect(Collectors.toList());
+		return issuesList.stream()
+				.filter(issue -> issue.getDescription().contains(text) || issue.getTitle().contains(text))
+				.collect(Collectors.toList());
 	}
 }
