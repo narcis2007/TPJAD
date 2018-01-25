@@ -26,7 +26,7 @@ public class UserController {
 
 	@RequestMapping(value = "/addUser", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, method = RequestMethod.POST)
 	public String addUser(@ModelAttribute User user) {
-		log.info("addIssue");
+		log.info("addUser");
 		user.setDateRegistration(new Date());
 		userService.saveUser(user);
 		return "redirect:/users";
