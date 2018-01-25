@@ -11,9 +11,9 @@
 		    <th>User Name</th> 
 		    <th>Date Registration</th>
 		  </tr>
-    	<tr th:each="user:${user}">
+    	<tr th:each="user:${users}">
 		     <td th:text="${user.name}"></td>
-		     <td th:text="${user.user}"></td>
+		     <td th:text="${user.username}"></td>
 		     <td th:text="${user.dateRegistration}"></td>
 		     <td><a th:href="@{/users/} + ${user.id} + @{/edit}">Edit</a></td>
 		     <td>
