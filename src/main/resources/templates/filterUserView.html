@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	Users:
+    <table>
+	    <tr>
+		    <th>Name</th>
+		    <th>User Name</th> 
+		    <th>Date Registration</th>
+		  </tr>
+    	<tr th:each="user:${user}">
+		     <td th:text="${user.name}"></td>
+		     <td th:text="${user.user}"></td>
+		     <td th:text="${user.dateRegistration}"></td>
+		     <td><a th:href="@{/users/} + ${user.id} + @{/edit}">Edit</a></td>
+		     <td>
+		     	<form th:method="POST" action="#" th:object="${user}" th:action="@{/users/} + ${user.id}+@{/delete}">
+		    		<input type="submit" value="Delete"/>
+				</form>	
+			</td>
+		</tr>
+		
+	</table>
+    
+ <form th:method="GET" action="#" th:object="${text}" th:action="@{/users/filterJpa?text=} + ${text}">
+		    		<input type="text" name="text" th:object="${text}"/>
+		    		<input type="submit" value="Filter"/>
+				</form>	
+
+</body>
+</html>

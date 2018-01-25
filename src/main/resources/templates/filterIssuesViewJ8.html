@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	Issues:
+    <table>
+	    <tr>
+		    <th>Title</th>
+		    <th>Description</th> 
+		    <th>Date Added</th>
+		  </tr>
+    	<tr th:each="issue:${issues}">
+		     <td th:text="${issue.title}"></td>
+		     <td th:text="${issue.description}"></td>
+		     <td th:text="${issue.dateAdded}"></td>
+		     <td><a th:href="@{/issues/} + ${issue.id} + @{/edit}">Edit</a></td>
+		     <td>
+		     	<form th:method="POST" action="#" th:object="${issue}" th:action="@{/issues/} + ${issue.id}+@{/delete}">
+		    		<input type="submit" value="Delete"/>
+				</form>	
+			</td>
+		</tr>
+		
+	</table>
+    
+
+</body>
+</html>

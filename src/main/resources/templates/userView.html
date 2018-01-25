@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	Users:
+    <table>
+	    <tr>
+		    <th>Name</th>
+		    <th>User Name</th> 
+		    <th>Date Registration</th>
+		  </tr>
+    	<tr th:each="user:${user}">
+		     <td th:text="${user.name}"></td>
+		     <td th:text="${user.user}"></td>
+		     <td th:text="${user.dateRegistration}"></td>
+		     <td><a th:href="@{/users/} + ${user.id} + @{/edit}">Edit</a></td>
+		     <td>
+		     	<form th:method="POST" action="#" th:object="${user}" th:action="@{/users/} + ${user.id}+@{/findyId}">
+		    		<input type="submit" value="${user.id}"/>
+				</form>	
+			</td>
+		</tr>
+		
+	</table>
+
+</body>
+</html>
