@@ -10,11 +10,21 @@
 		    <th>Name</th>
 		    <th>User Name</th> 
 		    <th>Date Registration</th>
+		    <th>Issues</th>
 		  </tr>
     	<tr th:each="user:${users}">
 		     <td th:text="${user.name}"></td>
 		     <td th:text="${user.username}"></td>
 		     <td th:text="${user.dateRegistration}"></td>
+		     
+		     <td th:if="${user.issues}!=null">
+		     	<div th:each="issue:${user.issues}" >
+		     		<p th:text="${issue.title}"></p>
+		     	</div>
+		     </td>
+		     
+		     
+		     
 		     <td><a th:href="@{/users/} + ${user.id} + @{/edit}">Edit</a></td>
 		     <td>
 		     	<form th:method="POST" action="#" th:object="${user}" th:action="@{/users/} + ${user.id}+@{/delete}">

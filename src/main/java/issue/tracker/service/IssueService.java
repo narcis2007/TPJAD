@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import issue.tracker.domain.Issue;
 import issue.tracker.repository.IssueRepository;
+import issue.tracker.repository.UserRepository;
 
 @Service
 public class IssueService {
@@ -16,7 +17,11 @@ public class IssueService {
 	@Autowired
 	IssueRepository issueRepository;
 
+	@Autowired
+	UserRepository userRepository;
+
 	public Issue saveIssue(Issue issue) {
+		issue.setUser(userRepository.findOne(issue.getUserId()));
 		return issueRepository.save(issue);
 
 	}

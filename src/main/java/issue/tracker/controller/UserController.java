@@ -42,7 +42,8 @@ public class UserController {
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String getUsers(Model model) {
 		log.info("getUsers");
-		model.addAttribute("users", userService.findAll());
+		Iterable<User> users = userService.findAll();
+		model.addAttribute("users", users);
 		model.addAttribute("text", "");
 		return "usersView";
 	}

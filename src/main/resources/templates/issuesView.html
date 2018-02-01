@@ -10,11 +10,13 @@
 		    <th>Title</th>
 		    <th>Description</th> 
 		    <th>Date Added</th>
+		    <th>UserId</th>
 		  </tr>
     	<tr th:each="issue:${issues}">
 		     <td th:text="${issue.title}"></td>
 		     <td th:text="${issue.description}"></td>
 		     <td th:text="${issue.dateAdded}"></td>
+		     <td th:text="${issue.user!=null?issue.user.id:''}"></td>
 		     <td><a th:href="@{/issues/} + ${issue.id} + @{/edit}">Edit</a></td>
 		     <td>
 		     	<form th:method="POST" action="#" th:object="${issue}" th:action="@{/issues/} + ${issue.id}+@{/delete}">
