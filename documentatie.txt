@@ -1,0 +1,31 @@
+Issue tracker
+
+ - Aplicatie facuta folosind Spring Boot cu server Tomcat embedded, pe partea de UI s-a folosit Thymeleaf iar pentru partea de persistenta s-a folosit JPA impreuna cu Spring Data
+ 
+ - Aplicatia se poate rula in CloudFoundry, isi ia datele de conectare la baza de date din niste variabile de environment. In fisierul manifest.yml se afla date pentru configurare in cloud precum numarul de instante, memoria folosita, buildpack-ul de Java, calea catre arhiva jar precum si serviciul care permite conectarea la o baza de date hostata in CloudFoundry.
+ 
+ - Functionalitati:
+   Adaugare de Issues
+   Editare de Issues
+   Vizualizare de Issues
+   Stergere de Issues
+   Filtrare dupa titlu si/sau descriere in 2 moduri: prin Java 8/Streams combinat cu expresii lambda si prin Spring Data
+   Adaugare de Users
+   Stergere de Users
+   Filtrare de Users in 2 moduri pentru mai multe field-uri
+   Editare de Users
+   Vizualizare de Users
+   
+   Se foloseste o arhitectura pe 3 straturi cu @Repository, @Service si @Controller. Legaturile dintre bean-uri se face prin dependency injection
+   Pentru a rula aplicatia este necesar declararea unor variabile de environment:    ${vcap.services.issue_tracker_db.credentials.jdbcUrl}
+   ${vcap.services.issue_tracker_db.credentials.username}
+   ${vcap.services.issue_tracker_db.credentials.password}
+   
+   Exista teste de integrare pentru fiecare dintre metodele de baza, s-a folosit baza de date in memorie H2 pentru rularea lor.
+   
+   Contributie:
+   Ciobotariu Narcis - configurare proiect, tot ce tine de Issues, testare - scris teste, deploy cloud
+   Costea Bianca - testare, scris teste
+   Stelian Rosca - tot ce tine de Users, scris teste
+   Oros Daniel - testare
+ 

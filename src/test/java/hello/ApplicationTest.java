@@ -19,6 +19,8 @@ package hello;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,6 @@ import issue.tracker.domain.Issue;
 import issue.tracker.domain.User;
 import issue.tracker.service.IssueService;
 import issue.tracker.service.UserService;
-import java.util.Date;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -40,6 +40,7 @@ public class ApplicationTest {
 
 	@Autowired
 	private IssueService issueService;
+	@Autowired
 	private UserService userService;
 
 	@Test
@@ -94,28 +95,28 @@ public class ApplicationTest {
 
 		assertEquals(2, issueService.findByTitleOrDescription("a").size());
 	}
-        
-        @Test
-        public void testAddUser(){
-                User user = new User();
-                user.setDateRegistration(new Date());
-                user.setName("test2");
-                user.setUsername("test23");
-                User user2 = userService.saveUser(user);
+
+	@Test
+	public void testAddUser() {
+		User user = new User();
+		user.setDateRegistration(new Date());
+		user.setName("test2");
+		user.setUsername("test23");
+		User user2 = userService.saveUser(user);
 		assertNotNull(user2);
 		assertEquals(user2.getUsername(), user.getUsername());
-        }
-        
-        @Test
-        public void testEditUser(){
-                User user = new User();
-                user.setDateRegistration(new Date());
-                user.setName("test2");
-                user.setId(9);
-                user.setUsername("test32");
-                userService.saveUser(user);
-                User user2 = new User();
-                user2.setName(user.getName());
+	}
+
+	@Test
+	public void testEditUser() {
+		User user = new User();
+		user.setDateRegistration(new Date());
+		user.setName("test2");
+		user.setId(9);
+		user.setUsername("test32");
+		userService.saveUser(user);
+		User user2 = new User();
+		user2.setName(user.getName());
 		assertEquals(user2.getName(), user.getName());
-        }
+	}
 }
